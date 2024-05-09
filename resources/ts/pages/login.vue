@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import {router, usePage} from "@inertiajs/vue3";
-import {telegramService} from "@/services";
+import {telegramService} from "../services";
 
 const page = usePage();
 router.post(page.props.auth.route, {

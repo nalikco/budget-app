@@ -1,11 +1,9 @@
 <?php
 
 use App\Http\Middleware\HandleInertiaRequests;
-use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
-use Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull;
 use Illuminate\Session\Middleware\StartSession;
 
 return Application::configure(basePath: dirname(__DIR__))
@@ -16,8 +14,6 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->append([
-            AddQueuedCookiesToResponse::class,
-            ConvertEmptyStringsToNull::class,
             StartSession::class,
             HandleInertiaRequests::class,
         ]);

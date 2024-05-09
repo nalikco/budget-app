@@ -19,5 +19,4 @@ class Currency extends Model
         'name',
         'format',
     ];
-
 }

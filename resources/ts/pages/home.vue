@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import {usePage} from "@inertiajs/vue3";
-import AppWrapper from "@/app-wrapper.vue";
+import AppWrapper from "../app-wrapper.vue";
 
 const page = usePage();
 

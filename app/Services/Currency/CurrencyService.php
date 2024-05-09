@@ -10,8 +10,9 @@ class CurrencyService
     /**
      * Finds a currency by its ISO code.
      *
-     * @param string $isoCode The ISO code of the currency.
+     * @param  string  $isoCode  The ISO code of the currency.
      * @return Currency The found currency.
+     *
      * @throws CurrencyNotFoundException If no currency with the specified ISO code is found.
      */
     public function findByIsoCode(string $isoCode): Currency

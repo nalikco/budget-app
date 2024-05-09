@@ -5,14 +5,13 @@ namespace App\Dto\Telegram;
 class TelegramUserDto
 {
     public function __construct(
-        public int    $id,
+        public int $id,
         public string $firstName,
         public string $lastName,
         public string $username,
         public string $languageCode,
-        public bool   $allowsWriteToPm,
-    )
-    {
+        public bool $allowsWriteToPm,
+    ) {
     }
 
     public function toArray(): array

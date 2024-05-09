@@ -1,4 +1,4 @@
-import {TelegramWebApp} from "@/types/telegram-web-app";
+import {TelegramWebApp} from "../types/telegram-web-app";
 
 export interface TelegramServiceInterface {
     getInitData(): string;
@@ -8,8 +8,7 @@ export class TelegramService implements TelegramServiceInterface {
     private tg: TelegramWebApp;
 
     constructor() {
-        // eslint-disable-next-line @typescript-eslint/ban-js-comment
-        // @js-expect-error
+        // @ts-ignore
         this.tg = window.Telegram.WebApp
 
         this.tg.MainButton.setParams({

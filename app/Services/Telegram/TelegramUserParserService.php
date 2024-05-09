@@ -17,7 +17,7 @@ class TelegramUserParserService
     /**
      * Get a TelegramUser object from the provided initialization data.
      *
-     * @param string $initData The initialization data containing user information.
+     * @param  string  $initData  The initialization data containing user information.
      * @return TelegramUserDto The TelegramUser object created from the initialization data.
      *
      * @throws InvalidTelegramInitDataException When the initialization data is invalid.
@@ -27,11 +27,11 @@ class TelegramUserParserService
         $initDataValues = [];
         parse_str($initData, $initDataValues);
 
-        if (!isset($initDataValues['user'])) {
+        if (! isset($initDataValues['user'])) {
             throw new InvalidTelegramInitDataException();
         }
 
-        if (!$this->checkInitData($initDataValues)) {
+        if (! $this->checkInitData($initDataValues)) {
             throw new InvalidTelegramInitDataException();
         }
 
@@ -54,7 +54,7 @@ class TelegramUserParserService
     /**
      * Check if the provided initDataValues match the hash value.
      *
-     * @param array $initDataValues An array containing data values to be checked.
+     * @param  array  $initDataValues  An array containing data values to be checked.
      * @return bool Returns true if the hash matches the calculated hash from the data values, false otherwise.
      */
     private function checkInitData(array $initDataValues): bool

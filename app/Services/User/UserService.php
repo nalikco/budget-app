@@ -10,9 +10,8 @@ class UserService
     /**
      * Create a new user with the specified username and currency.
      *
-     * @param string $username The username for the new user.
-     * @param Currency $currency The currency to associate with the user.
-     *
+     * @param  string  $username  The username for the new user.
+     * @param  Currency  $currency  The currency to associate with the user.
      * @return User The newly created user.
      */
     public function create(string $username, Currency $currency): User
