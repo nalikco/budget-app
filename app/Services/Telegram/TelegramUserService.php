@@ -42,7 +42,10 @@ class TelegramUserService
                 currency: $this->currencyService->findByIsoCode(self::DEFAULT_CURRENCY),
             );
             $user->telegramUser()
-                ->create($telegramUserData->toArray());
+                ->create([
+                    'telegram_id' => $telegramUserData->id,
+                    ...$telegramUserData->toArray(),
+                ]);
 
             return $user;
         }

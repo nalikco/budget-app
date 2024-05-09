@@ -2,7 +2,7 @@
 
 namespace App\Services\Telegram;
 
-use App\Dto\Telegram\TelegramUserDto;
+use App\Dto\Telegram\TelegramUserData;
 use App\Exceptions\Telegram\InvalidTelegramInitDataException;
 
 class TelegramUserParserService
@@ -18,11 +18,11 @@ class TelegramUserParserService
      * Get a TelegramUser object from the provided initialization data.
      *
      * @param  string  $initData  The initialization data containing user information.
-     * @return TelegramUserDto The TelegramUser object created from the initialization data.
+     * @return TelegramUserData The TelegramUser object created from the initialization data.
      *
      * @throws InvalidTelegramInitDataException When the initialization data is invalid.
      */
-    public function getUserFromInitData(string $initData): TelegramUserDto
+    public function getUserFromInitData(string $initData): TelegramUserData
     {
         $initDataValues = [];
         parse_str($initData, $initDataValues);
@@ -41,14 +41,7 @@ class TelegramUserParserService
             throw new InvalidTelegramInitDataException();
         }
 
-        return new TelegramUserDto(
-            id: $user['id'],
-            firstName: $user['first_name'],
-            lastName: $user['last_name'],
-            username: $user['username'],
-            languageCode: $user['language_code'],
-            allowsWriteToPm: $user['allows_write_to_pm'],
-        );
+        return TelegramUserData::from($user);
     }
 
     /**

@@ -12,6 +12,7 @@
         "inertiajs/inertia-laravel": "^1.0",
         "laravel/framework": "^11.0",
         "laravel/tinker": "^2.9",
+        "spatie/laravel-data": "^4.6",
         "spatie/laravel-route-attributes": "^1.22"
     },
     "require-dev": {

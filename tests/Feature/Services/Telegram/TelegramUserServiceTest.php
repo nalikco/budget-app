@@ -1,6 +1,6 @@
 <?php
 
-use App\Dto\Telegram\TelegramUserDto;
+use App\Dto\Telegram\TelegramUserData;
 use App\Exceptions\Telegram\TelegramUserNotFound;
 use App\Models\Currency;
 use App\Models\TelegramUser;
@@ -18,14 +18,14 @@ uses(RefreshDatabase::class);
 $initData = 'init_data';
 
 it('get or create (create)', function () use ($initData) {
-    $telegramUserDto = new TelegramUserDto(
-        id: 1,
-        firstName: 'John',
-        lastName: 'Doe',
-        username: 'john.doe',
-        languageCode: 'en',
-        allowsWriteToPm: true,
-    );
+    $telegramUserDto = TelegramUserData::from([
+        'id' => 1,
+        'first_name' => 'John',
+        'last_name' => 'Doe',
+        'username' => 'john.doe',
+        'language_code' => 'en',
+        'allows_write_to_pm' => true,
+    ]);
     $this->instance(
         TelegramUserParserService::class,
         Mockery::mock(TelegramUserParserService::class, function (MockInterface $mock) use ($initData, $telegramUserDto) {
@@ -69,11 +69,11 @@ it('get or create (create)', function () use ($initData) {
         ->and($createdUser->id)->toBe($user->id)
         ->and($createdUser->currency->iso_code)->toBe(TelegramUserService::DEFAULT_CURRENCY)
         ->and($createdUser->telegramUser->telegram_id)->toBe($telegramUserDto->id)
-        ->and($createdUser->telegramUser->first_name)->toBe($telegramUserDto->firstName)
-        ->and($createdUser->telegramUser->last_name)->toBe($telegramUserDto->lastName)
+        ->and($createdUser->telegramUser->first_name)->toBe($telegramUserDto->first_name)
+        ->and($createdUser->telegramUser->last_name)->toBe($telegramUserDto->last_name)
         ->and($createdUser->telegramUser->username)->toBe($telegramUserDto->username)
-        ->and($createdUser->telegramUser->language_code)->toBe($telegramUserDto->languageCode)
-        ->and($createdUser->telegramUser->allows_write_to_pm)->toBe($telegramUserDto->allowsWriteToPm);
+        ->and($createdUser->telegramUser->language_code)->toBe($telegramUserDto->language_code)
+        ->and($createdUser->telegramUser->allows_write_to_pm)->toBe($telegramUserDto->allows_write_to_pm);
 
 });
 
@@ -81,15 +81,10 @@ it('get or create (get)', function () use ($initData) {
     $user = User::factory()->create();
     $telegramUser = TelegramUser::factory()->create(['user_id' => $user->id]);
 
-    $telegramUserDto = new TelegramUserDto(
-        id: $telegramUser->telegram_id,
-        firstName: $telegramUser->first_name,
-        lastName: $telegramUser->last_name,
-        username: $telegramUser->username,
-        languageCode: $telegramUser->language_code,
-        allowsWriteToPm: $telegramUser->allows_write_to_pm,
-    );
-
+    $telegramUserDto = TelegramUserData::from([
+        ...$telegramUser->toArray(),
+        'id' => $telegramUser->telegram_id,
+    ]);
     $this->instance(
         TelegramUserParserService::class,
         Mockery::mock(TelegramUserParserService::class, function (MockInterface $mock) use ($initData, $telegramUserDto) {
