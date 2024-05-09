@@ -1,4 +1,4 @@
-export type TelegramWebApp = {
+type TelegramWebApp = {
     initData: string;
     MainButton: {
         onClick: (callback: () => void) => void;

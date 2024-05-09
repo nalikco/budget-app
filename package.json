@@ -3,11 +3,23 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "lint": "eslint ./resources/ts/**/*.vue ./resources/ts/**/*.ts",
+        "format": "prettier ./resources/ts/**/*.vue ./resources/ts/**/*.ts  --write"
     },
     "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "^7.8.0",
+        "@typescript-eslint/parser": "^7.8.0",
+        "@vue/eslint-config-typescript": "^13.0.0",
         "axios": "^1.6.4",
+        "eslint": "^8.57.0",
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-plugin-no-relative-import-paths": "^1.5.4",
+        "eslint-plugin-prettier": "^5.1.3",
+        "eslint-plugin-unused-imports": "^3.2.0",
+        "eslint-plugin-vue": "^9.26.0",
         "laravel-vite-plugin": "^1.0",
+        "prettier": "^3.2.5",
         "vite": "^5.0"
     },
     "dependencies": {
