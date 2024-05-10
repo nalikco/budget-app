@@ -60,5 +60,5 @@ updated_at: string;
 };
 }
 declare namespace App.Enums {
-export enum MovementCategoryType { 'DEBIT' = 'debit', 'CREDIT' = 'credit' };
+export enum MovementCategoryType { 'INCOME' = 'income', 'OUTCOME' = 'outcome' };
 }

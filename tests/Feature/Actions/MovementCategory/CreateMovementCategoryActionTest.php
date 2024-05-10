@@ -14,7 +14,7 @@ it('handle', function () {
     $user = new User();
     $user->id = 1;
     $data = CreateMovementCategoryData::from([
-        'type' => MovementCategoryType::DEBIT,
+        'type' => MovementCategoryType::INCOME,
         'name' => 'Visa',
         'icon' => 'visa',
     ]);

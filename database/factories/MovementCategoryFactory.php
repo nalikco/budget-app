@@ -27,8 +27,8 @@ class MovementCategoryFactory extends Factory
         return [
             'user_id' => $users->random()->id,
             'type' => $this->faker->randomElement([
-                MovementCategoryType::DEBIT,
-                MovementCategoryType::CREDIT,
+                MovementCategoryType::INCOME,
+                MovementCategoryType::OUTCOME,
             ]),
             'name' => $this->faker->text(20),
             'icon' => $this->faker->randomElement(config('icons')),

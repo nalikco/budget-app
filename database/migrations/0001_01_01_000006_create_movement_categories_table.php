@@ -21,8 +21,8 @@ return new class extends Migration
                 ->cascadeOnDelete();
             $table->boolean('is_default')->default(false);
             $table->enum('type', [
-                MovementCategoryType::CREDIT->value,
-                MovementCategoryType::DEBIT->value,
+                MovementCategoryType::INCOME->value,
+                MovementCategoryType::OUTCOME->value,
             ]);
             $table->string('name');
             $table->string('icon');

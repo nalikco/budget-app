@@ -71,8 +71,8 @@ class MovementCategoryService
 
         return $user->movementCategories()
             ->createMany([
-                ['type' => MovementCategoryType::CREDIT, ...$transferDefaults],
-                ['type' => MovementCategoryType::DEBIT, ...$transferDefaults],
+                ['type' => MovementCategoryType::INCOME, ...$transferDefaults],
+                ['type' => MovementCategoryType::OUTCOME, ...$transferDefaults],
             ]);
     }
 }

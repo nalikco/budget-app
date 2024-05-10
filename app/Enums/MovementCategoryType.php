@@ -4,6 +4,6 @@ namespace App\Enums;
 
 enum MovementCategoryType: string
 {
-    case DEBIT = 'debit';
-    case CREDIT = 'credit';
+    case INCOME = 'income';
+    case OUTCOME = 'outcome';
 }

@@ -12,7 +12,7 @@ uses(RefreshDatabase::class);
 it('create', function () {
     $user = User::factory()->create();
     $data = CreateMovementCategoryData::from([
-        'type' => MovementCategoryType::DEBIT,
+        'type' => MovementCategoryType::INCOME,
         'name' => 'Transport',
         'icon' => 'taxi',
     ]);
@@ -30,7 +30,7 @@ it('create', function () {
 it('update', function () {
     $movementCategory = MovementCategory::factory()->create();
     $data = CreateMovementCategoryData::from([
-        'type' => MovementCategoryType::DEBIT,
+        'type' => MovementCategoryType::INCOME,
         'name' => 'Transport',
         'icon' => 'taxi',
     ]);
@@ -49,7 +49,7 @@ it('can\'t update default movement category', function () {
         'is_default' => true,
     ]);
     $data = CreateMovementCategoryData::from([
-        'type' => MovementCategoryType::DEBIT,
+        'type' => MovementCategoryType::INCOME,
         'name' => 'Transport',
         'icon' => 'taxi',
     ]);
@@ -97,9 +97,9 @@ it('create defaults', function () {
     expect($defaultMovementCategories->count())->toBe(2)
         ->and($user->movementCategories()->count())->toBe(2)
         ->and($user->movementCategories()
-            ->where(['type' => MovementCategoryType::CREDIT, 'is_default' => true])
+            ->where(['type' => MovementCategoryType::INCOME, 'is_default' => true])
             ->first())->not()->toBeNull()
         ->and($user->movementCategories()
-            ->where(['type' => MovementCategoryType::DEBIT, 'is_default' => true])
+            ->where(['type' => MovementCategoryType::OUTCOME, 'is_default' => true])
             ->first())->not()->toBeNull();
 });
