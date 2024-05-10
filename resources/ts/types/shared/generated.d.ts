@@ -30,6 +30,7 @@ icon: string;
 };
 export type MovementCategoryData = {
 id: number;
+is_default: boolean;
 type: App.Enums.MovementCategoryType;
 name: string;
 icon: string;

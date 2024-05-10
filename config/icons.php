@@ -3,4 +3,5 @@
 return [
     'taxi',
     'visa',
+    'transfer',
 ];

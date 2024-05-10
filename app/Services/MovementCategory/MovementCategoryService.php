@@ -3,8 +3,10 @@
 namespace App\Services\MovementCategory;
 
 use App\Dto\MovementCategory\CreateMovementCategoryData;
+use App\Enums\MovementCategoryType;
 use App\Models\MovementCategory;
 use App\Models\User;
+use Illuminate\Support\Collection;
 
 class MovementCategoryService
 {
@@ -30,6 +32,10 @@ class MovementCategoryService
      */
     public function update(MovementCategory $movementCategory, CreateMovementCategoryData $data): MovementCategory
     {
+        if ($movementCategory->is_default) {
+            return $movementCategory;
+        }
+
         $movementCategory->update($data->toArray());
 
         return $movementCategory;
@@ -42,6 +48,31 @@ class MovementCategoryService
      */
     public function delete(MovementCategory $movementCategory): void
     {
+        if ($movementCategory->is_default) {
+            return;
+        }
+
         $movementCategory->delete();
+    }
+
+    /**
+     * Creates default movement categories for a given user.
+     *
+     * @param  User  $user  The user for whom the default movement categories will be created.
+     * @return Collection The collection of created default movement categories.
+     */
+    public function createDefaults(User $user): Collection
+    {
+        $transferDefaults = [
+            'is_default' => true,
+            'name' => MovementCategory::TRANSFER_CATEGORY_NAME,
+            'icon' => MovementCategory::TRANSFER_CATEGORY_ICON,
+        ];
+
+        return $user->movementCategories()
+            ->createMany([
+                ['type' => MovementCategoryType::CREDIT, ...$transferDefaults],
+                ['type' => MovementCategoryType::DEBIT, ...$transferDefaults],
+            ]);
     }
 }

@@ -12,6 +12,10 @@ class MovementCategory extends Model
 {
     use HasFactory, SoftDeletes;
 
+    public const string TRANSFER_CATEGORY_NAME = 'Transfer';
+
+    public const string TRANSFER_CATEGORY_ICON = 'transfer';
+
     /**
      * The attributes that are mass assignable.
      *

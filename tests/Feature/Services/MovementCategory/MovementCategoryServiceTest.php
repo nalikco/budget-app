@@ -44,6 +44,25 @@ it('update', function () {
         ->and($updatedMovementCategory->icon)->toBe($data->icon);
 });
 
+it('can\'t update default movement category', function () {
+    $movementCategory = MovementCategory::factory()->create([
+        'is_default' => true,
+    ]);
+    $data = CreateMovementCategoryData::from([
+        'type' => MovementCategoryType::DEBIT,
+        'name' => 'Transport',
+        'icon' => 'taxi',
+    ]);
+    $service = $this->app->make(MovementCategoryService::class);
+
+    $updatedMovementCategory = $service->update($movementCategory, $data);
+
+    expect($updatedMovementCategory)->toBeInstanceOf(MovementCategory::class)
+        ->and($updatedMovementCategory->type)->toBe($movementCategory->type)
+        ->and($updatedMovementCategory->name)->toBe($movementCategory->name)
+        ->and($updatedMovementCategory->icon)->toBe($movementCategory->icon);
+});
+
 it('delete', function () {
     $user = User::factory()->create();
     $movementCategory = MovementCategory::factory()->create([
@@ -54,4 +73,33 @@ it('delete', function () {
     $service->delete($movementCategory);
 
     expect($user->movementCategories()->count())->toBe(0);
+});
+
+it('can\'t delete default movement category', function () {
+    $user = User::factory()->create();
+    $movementCategory = MovementCategory::factory()->create([
+        'is_default' => true,
+        'user_id' => $user->id,
+    ]);
+    $service = $this->app->make(MovementCategoryService::class);
+
+    $service->delete($movementCategory);
+
+    expect($user->movementCategories()->count())->toBe(1);
+});
+
+it('create defaults', function () {
+    $user = User::factory()->create();
+    $service = $this->app->make(MovementCategoryService::class);
+
+    $defaultMovementCategories = $service->createDefaults($user);
+
+    expect($defaultMovementCategories->count())->toBe(2)
+        ->and($user->movementCategories()->count())->toBe(2)
+        ->and($user->movementCategories()
+            ->where(['type' => MovementCategoryType::CREDIT, 'is_default' => true])
+            ->first())->not()->toBeNull()
+        ->and($user->movementCategories()
+            ->where(['type' => MovementCategoryType::DEBIT, 'is_default' => true])
+            ->first())->not()->toBeNull();
 });
