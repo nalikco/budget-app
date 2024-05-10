@@ -21,14 +21,14 @@ it('create', function () {
         'icon' => 'visa',
     ]);
 
-    $newAccount = $service->create($user, CreateAccountData::from($data));
+    $createdAccount = $service->create($user, CreateAccountData::from($data));
 
     expect($user->accounts()->count())->toBe(1)
-        ->and($newAccount)->toBeInstanceOf(Account::class)
-        ->and($newAccount->currency->iso_code)->toBe($data->currency)
-        ->and($newAccount->name)->toBe($data->name)
-        ->and($newAccount->balance)->toBe($data->balance)
-        ->and($newAccount->icon)->toBe($data->icon);
+        ->and($createdAccount)->toBeInstanceOf(Account::class)
+        ->and($createdAccount->currency->iso_code)->toBe($data->currency)
+        ->and($createdAccount->name)->toBe($data->name)
+        ->and($createdAccount->balance)->toBe($data->balance)
+        ->and($createdAccount->icon)->toBe($data->icon);
 });
 
 it('update', function () {

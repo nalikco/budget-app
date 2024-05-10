@@ -49,4 +49,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Account::class);
     }
+
+    public function movementCategories(): HasMany
+    {
+        return $this->hasMany(MovementCategory::class);
+    }
 }

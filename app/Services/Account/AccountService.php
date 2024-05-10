@@ -28,10 +28,11 @@ class AccountService
     {
         $currency = $this->currencyService->findByIsoCode($data->currency);
 
-        return $user->accounts()->create([
-            'currency_id' => $currency->id,
-            ...$data->toArray(),
-        ]);
+        return $user->accounts()
+            ->create([
+                'currency_id' => $currency->id,
+                ...$data->toArray(),
+            ]);
     }
 
     /**
