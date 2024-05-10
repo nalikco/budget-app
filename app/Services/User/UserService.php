@@ -5,6 +5,7 @@ namespace App\Services\User;
 use App\Models\Currency;
 use App\Models\User;
 use App\Services\MovementCategory\MovementCategoryService;
+use Illuminate\Support\Facades\DB;
 
 class UserService
 {
@@ -22,12 +23,16 @@ class UserService
      */
     public function create(string $username, Currency $currency): User
     {
-        $user = User::query()->create([
-            'currency_id' => $currency->id,
+        $userData = [
             'username' => $username,
-        ]);
-        $this->movementCategoryService->createDefaults($user);
+            'currency_id' => $currency->id,
+        ];
 
-        return $user;
+        return DB::transaction(function () use ($userData) {
+            $user = User::query()->create($userData);
+            $this->movementCategoryService->createDefaults($user);
+
+            return $user;
+        });
     }
 }
