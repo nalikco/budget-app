@@ -12,7 +12,7 @@ uses(RefreshDatabase::class);
 it('create', function () {
     $user = User::factory()->create();
     $data = CreateMovementCategoryData::from([
-        'type' => MovementCategoryType::INCOME,
+        'type' => MovementCategoryType::DEBIT,
         'name' => 'Transport',
         'icon' => 'taxi',
     ]);
@@ -30,7 +30,7 @@ it('create', function () {
 it('update', function () {
     $movementCategory = MovementCategory::factory()->create();
     $data = CreateMovementCategoryData::from([
-        'type' => MovementCategoryType::INCOME,
+        'type' => MovementCategoryType::DEBIT,
         'name' => 'Transport',
         'icon' => 'taxi',
     ]);

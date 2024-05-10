@@ -11,7 +11,7 @@ it('handle', function () {
     $movementCategory = new MovementCategory();
     $movementCategory->id = 2;
     $data = CreateMovementCategoryData::from([
-        'type' => MovementCategoryType::INCOME,
+        'type' => MovementCategoryType::DEBIT,
         'name' => 'Visa',
         'icon' => 'visa',
     ]);

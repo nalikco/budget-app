@@ -20,8 +20,8 @@ return new class extends Migration
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
             $table->enum('type', [
-                MovementCategoryType::INCOME->value,
-                MovementCategoryType::OUTCOME->value,
+                MovementCategoryType::CREDIT->value,
+                MovementCategoryType::DEBIT->value,
             ]);
             $table->string('name');
             $table->string('icon');

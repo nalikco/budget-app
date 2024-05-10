@@ -19,6 +19,13 @@ name: string;
 format: string;
 };
 }
+declare namespace App.Dto.MovementCategory {
+export type CreateMovementCategoryData = {
+type: App.Enums.MovementCategoryType;
+name: string;
+icon: string;
+};
+}
 declare namespace App.Dto.Telegram {
 export type TelegramUserData = {
 id: number;
@@ -37,4 +44,7 @@ username: string;
 currency: App.Dto.Currency.CurrencyData;
 telegramUser: App.Dto.Telegram.TelegramUserData;
 };
+}
+declare namespace App.Enums {
+export enum MovementCategoryType { 'DEBIT' = 'debit', 'CREDIT' = 'credit' };
 }
