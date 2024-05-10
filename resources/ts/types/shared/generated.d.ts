@@ -5,8 +5,8 @@ currency: App.Dto.Currency.CurrencyData;
 name: string;
 balance: number;
 icon: string;
-created_at: string;
-updated_at: string;
+createdAt: string;
+updatedAt: string;
 };
 export type CreateAccountData = {
 currency: string;
@@ -17,7 +17,7 @@ icon: string;
 }
 declare namespace App.Dto.Currency {
 export type CurrencyData = {
-iso_code: string;
+isoCode: string;
 name: string;
 format: string;
 };
@@ -30,23 +30,39 @@ icon: string;
 };
 export type MovementCategoryData = {
 id: number;
-is_default: boolean;
+isDefault: boolean;
 type: App.Enums.MovementCategoryType;
 name: string;
 icon: string;
-created_at: string;
-updated_at: string;
+createdAt: string;
+updatedAt: string;
 };
 }
 declare namespace App.Dto.Telegram {
 export type TelegramUserData = {
 id: number;
-telegram_id: number;
-first_name: string;
-last_name: string;
+telegramId: number;
+firstName: string;
+lastName: string;
 username: string;
-language_code: string;
-allows_write_to_pm: boolean;
+languageCode: string;
+allowsWriteToPm: boolean;
+};
+}
+declare namespace App.Dto.Transaction {
+export type CreateTransactionData = {
+account: any;
+movementCategory: any;
+outAmount: number;
+inAmount: number;
+date: string;
+description: string | null;
+};
+export type CreateTransferData = {
+from: any;
+to: any;
+outAmount: number;
+inMount: number;
 };
 }
 declare namespace App.Dto.User {
@@ -55,8 +71,8 @@ id: number;
 username: string;
 currency: App.Dto.Currency.CurrencyData;
 telegramUser: App.Dto.Telegram.TelegramUserData;
-created_at: string;
-updated_at: string;
+createdAt: string;
+updatedAt: string;
 };
 }
 declare namespace App.Enums {

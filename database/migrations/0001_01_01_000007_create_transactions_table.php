@@ -24,12 +24,13 @@ return new class extends Migration
                 ->constrained()
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
-            $table->decimal('credit_amount', 15);
-            $table->decimal('debit_amount', 15);
+            $table->decimal('out_amount', 15);
+            $table->decimal('in_amount', 15);
             $table->timestamp('date');
             $table->string('description')->nullable();
             $table->foreignIdFor(Transaction::class, 'related_transaction_id')
                 ->nullable()
+                ->unique()
                 ->constrained('transactions')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();

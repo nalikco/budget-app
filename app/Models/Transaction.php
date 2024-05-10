@@ -19,8 +19,8 @@ class Transaction extends Model
     protected $fillable = [
         'account_id',
         'movement_category_id',
-        'credit_amount',
-        'debit_amount',
+        'out_amount',
+        'in_amount',
         'date',
         'description',
         'related_transaction_id',

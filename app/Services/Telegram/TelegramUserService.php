@@ -35,7 +35,7 @@ class TelegramUserService
         $telegramUserData = $this->telegramUserParserService->getUserFromInitData($initData);
 
         try {
-            return $this->findByTelegramId($telegramUserData->telegram_id)->user;
+            return $this->findByTelegramId($telegramUserData->telegramId)->user;
         } catch (TelegramUserNotFound) {
             $user = $this->userService->create(
                 username: $telegramUserData->username,

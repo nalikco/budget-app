@@ -6,6 +6,7 @@ use App\Enums\MovementCategoryType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class MovementCategory extends Model
@@ -55,8 +56,8 @@ class MovementCategory extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function transactions(): BelongsTo
+    public function transactions(): HasMany
     {
-        return $this->belongsTo(Transaction::class);
+        return $this->hasMany(Transaction::class);
     }
 }

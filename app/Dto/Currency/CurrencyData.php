@@ -2,6 +2,7 @@
 
 namespace App\Dto\Currency;
 
+use Spatie\LaravelData\Attributes\MapName;
 use Spatie\LaravelData\Data;
 use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
@@ -9,7 +10,8 @@ use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 class CurrencyData extends Data
 {
     public function __construct(
-        public string $iso_code,
+        #[MapName('iso_code')]
+        public string $isoCode,
         public string $name,
         public string $format,
     ) {

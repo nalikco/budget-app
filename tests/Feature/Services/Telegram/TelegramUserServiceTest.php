@@ -70,11 +70,11 @@ it('get or create (create)', function () use ($initData) {
         ->and($createdUser->id)->toBe($user->id)
         ->and($createdUser->currency->iso_code)->toBe(TelegramUserService::DEFAULT_CURRENCY)
         ->and($createdUser->telegramUser->telegram_id)->toBe($telegramUserDto->id)
-        ->and($createdUser->telegramUser->first_name)->toBe($telegramUserDto->first_name)
-        ->and($createdUser->telegramUser->last_name)->toBe($telegramUserDto->last_name)
+        ->and($createdUser->telegramUser->first_name)->toBe($telegramUserDto->firstName)
+        ->and($createdUser->telegramUser->last_name)->toBe($telegramUserDto->lastName)
         ->and($createdUser->telegramUser->username)->toBe($telegramUserDto->username)
-        ->and($createdUser->telegramUser->language_code)->toBe($telegramUserDto->language_code)
-        ->and($createdUser->telegramUser->allows_write_to_pm)->toBe($telegramUserDto->allows_write_to_pm);
+        ->and($createdUser->telegramUser->language_code)->toBe($telegramUserDto->languageCode)
+        ->and($createdUser->telegramUser->allows_write_to_pm)->toBe($telegramUserDto->allowsWriteToPm);
 
 });
 

@@ -16,11 +16,11 @@ it('get user from init data', function () use ($token, $initData) {
     $result = $telegramUserParserService->getUserFromInitData($initData);
 
     $this->assertEquals(3453455, $result->id);
-    $this->assertEquals('John', $result->first_name);
-    $this->assertEquals('Doe', $result->last_name);
+    $this->assertEquals('John', $result->firstName);
+    $this->assertEquals('Doe', $result->lastName);
     $this->assertEquals('johndoe', $result->username);
-    $this->assertEquals('en', $result->language_code);
-    $this->assertTrue($result->allows_write_to_pm);
+    $this->assertEquals('en', $result->languageCode);
+    $this->assertTrue($result->allowsWriteToPm);
 });
 
 it('get user from init data err: invalid token', function () use ($initData) {
