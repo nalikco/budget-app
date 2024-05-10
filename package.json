@@ -5,7 +5,8 @@
         "dev": "vite",
         "build": "vite build",
         "lint": "eslint ./resources/ts/**/*.vue ./resources/ts/**/*.ts",
-        "format": "prettier ./resources/ts/**/*.vue ./resources/ts/**/*.ts  --write"
+        "format": "prettier ./resources/ts/**/*.vue ./resources/ts/**/*.ts  --write",
+        "commit:prepare": "php artisan test && ./vendor/bin/pint && npm run format && npm run lint && npm run build"
     },
     "devDependencies": {
         "@typescript-eslint/eslint-plugin": "^7.8.0",

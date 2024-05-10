@@ -19,6 +19,7 @@ class MovementCategory extends Model
      */
     protected $fillable = [
         'user_id',
+        'is_default',
         'type',
         'name',
         'icon',

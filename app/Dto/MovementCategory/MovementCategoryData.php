@@ -12,6 +12,7 @@ class MovementCategoryData extends Data
 {
     public function __construct(
         public int $id,
+        public bool $is_default,
         public MovementCategoryType $type,
         public string $name,
         public string $icon,

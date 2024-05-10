@@ -19,6 +19,7 @@ return new class extends Migration
                 ->constrained()
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
+            $table->boolean('is_default')->default(false);
             $table->enum('type', [
                 MovementCategoryType::CREDIT->value,
                 MovementCategoryType::DEBIT->value,
