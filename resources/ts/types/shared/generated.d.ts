@@ -1,3 +1,17 @@
+declare namespace App.Dto.Account {
+export type AccountData = {
+currency: App.Dto.Currency.CurrencyData;
+name: string;
+balance: number;
+icon: string;
+};
+export type CreateAccountData = {
+currency: string;
+name: string;
+balance: number;
+icon: string;
+};
+}
 declare namespace App.Dto.Currency {
 export type CurrencyData = {
 iso_code: string;
