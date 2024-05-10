@@ -1,20 +1,19 @@
 <?php
 
-namespace App\Dto\Account;
+namespace App\Dto\MovementCategory;
 
-use App\Dto\Currency\CurrencyData;
+use App\Enums\MovementCategoryType;
 use Carbon\Carbon;
 use Spatie\LaravelData\Data;
 use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
 #[TypeScript]
-class AccountData extends Data
+class MovementCategoryData extends Data
 {
     public function __construct(
         public int $id,
-        public CurrencyData $currency,
+        public MovementCategoryType $type,
         public string $name,
-        public int|float $balance,
         public string $icon,
         public Carbon $created_at,
         public Carbon $updated_at,

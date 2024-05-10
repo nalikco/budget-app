@@ -1,9 +1,12 @@
 declare namespace App.Dto.Account {
 export type AccountData = {
+id: number;
 currency: App.Dto.Currency.CurrencyData;
 name: string;
 balance: number;
 icon: string;
+created_at: string;
+updated_at: string;
 };
 export type CreateAccountData = {
 currency: string;
@@ -25,6 +28,14 @@ type: App.Enums.MovementCategoryType;
 name: string;
 icon: string;
 };
+export type MovementCategoryData = {
+id: number;
+type: App.Enums.MovementCategoryType;
+name: string;
+icon: string;
+created_at: string;
+updated_at: string;
+};
 }
 declare namespace App.Dto.Telegram {
 export type TelegramUserData = {
@@ -43,6 +54,8 @@ id: number;
 username: string;
 currency: App.Dto.Currency.CurrencyData;
 telegramUser: App.Dto.Telegram.TelegramUserData;
+created_at: string;
+updated_at: string;
 };
 }
 declare namespace App.Enums {

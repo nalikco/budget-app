@@ -4,6 +4,7 @@ namespace App\Dto\User;
 
 use App\Dto\Currency\CurrencyData;
 use App\Dto\Telegram\TelegramUserData;
+use Carbon\Carbon;
 use Spatie\LaravelData\Data;
 use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
@@ -15,6 +16,8 @@ class UserData extends Data
         public string $username,
         public CurrencyData $currency,
         public TelegramUserData $telegramUser,
+        public Carbon $created_at,
+        public Carbon $updated_at,
     ) {
     }
 }
