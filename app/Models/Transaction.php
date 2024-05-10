@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
-use App\Enums\MovementCategoryType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class MovementCategory extends Model
+class Transaction extends Model
 {
     use HasFactory, SoftDeletes;
 
@@ -18,10 +17,13 @@ class MovementCategory extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'user_id',
-        'type',
-        'name',
-        'icon',
+        'account_id',
+        'movement_category_id',
+        'credit_amount',
+        'debit_amount',
+        'date',
+        'description',
+        'related_transaction_id',
     ];
 
     /**
@@ -30,7 +32,9 @@ class MovementCategory extends Model
      * @var array<int, string>
      */
     protected $with = [
-        'user',
+        'account',
+        'movementCategory',
+        'relatedTransaction',
     ];
 
     /**
@@ -41,17 +45,22 @@ class MovementCategory extends Model
     protected function casts(): array
     {
         return [
-            'type' => MovementCategoryType::class,
+            'date' => 'datetime',
         ];
     }
 
-    public function user(): BelongsTo
+    public function account(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Account::class);
     }
 
-    public function transactions(): BelongsTo
+    public function movementCategory(): BelongsTo
     {
-        return $this->belongsTo(Transaction::class);
+        return $this->belongsTo(MovementCategory::class);
+    }
+
+    public function relatedTransaction(): BelongsTo
+    {
+        return $this->belongsTo(Transaction::class, 'related_transaction_id');
     }
 }
