@@ -20,6 +20,7 @@ $initData = 'init_data';
 it('get or create (create)', function () use ($initData) {
     $telegramUserDto = TelegramUserData::from([
         'id' => 1,
+        'telegram_id' => 1,
         'first_name' => 'John',
         'last_name' => 'Doe',
         'username' => 'john.doe',
@@ -81,10 +82,7 @@ it('get or create (get)', function () use ($initData) {
     $user = User::factory()->create();
     $telegramUser = TelegramUser::factory()->create(['user_id' => $user->id]);
 
-    $telegramUserDto = TelegramUserData::from([
-        ...$telegramUser->toArray(),
-        'id' => $telegramUser->telegram_id,
-    ]);
+    $telegramUserDto = TelegramUserData::from($telegramUser);
     $this->instance(
         TelegramUserParserService::class,
         Mockery::mock(TelegramUserParserService::class, function (MockInterface $mock) use ($initData, $telegramUserDto) {

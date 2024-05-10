@@ -35,17 +35,14 @@ class TelegramUserService
         $telegramUserData = $this->telegramUserParserService->getUserFromInitData($initData);
 
         try {
-            return $this->findByTelegramId($telegramUserData->id)->user;
+            return $this->findByTelegramId($telegramUserData->telegram_id)->user;
         } catch (TelegramUserNotFound) {
             $user = $this->userService->create(
                 username: $telegramUserData->username,
                 currency: $this->currencyService->findByIsoCode(self::DEFAULT_CURRENCY),
             );
             $user->telegramUser()
-                ->create([
-                    'telegram_id' => $telegramUserData->id,
-                    ...$telegramUserData->toArray(),
-                ]);
+                ->create($telegramUserData->toArray());
 
             return $user;
         }

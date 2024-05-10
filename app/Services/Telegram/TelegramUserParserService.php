@@ -41,7 +41,10 @@ class TelegramUserParserService
             throw new InvalidTelegramInitDataException();
         }
 
-        return TelegramUserData::from($user);
+        return TelegramUserData::from([
+            ...$user,
+            'telegram_id' => $user['id'],
+        ]);
     }
 
     /**
