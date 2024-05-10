@@ -16,7 +16,13 @@ class CreateAccountAction
     }
 
     /**
-     * @throws CurrencyNotFoundException
+     * Handles the account creation process.
+     *
+     * @param  User  $user  The user for whom the account is being created.
+     * @param  CreateAccountData  $data  The data needed to create the account.
+     * @return Account The newly created account.
+     *
+     * @throws CurrencyNotFoundException If the specified currency is not found.
      */
     public function handle(User $user, CreateAccountData $data): Account
     {

@@ -15,7 +15,13 @@ class UpdateAccountAction
     }
 
     /**
-     * @throws CurrencyNotFoundException
+     * Handles the account update process.
+     *
+     * @param  Account  $account  The account to be updated.
+     * @param  CreateAccountData  $data  The data needed for the account update.
+     * @return Account The updated account.
+     *
+     * @throws CurrencyNotFoundException If the specified currency is not found.
      */
     public function handle(Account $account, CreateAccountData $data): Account
     {

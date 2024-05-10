@@ -16,7 +16,13 @@ class AccountService
     }
 
     /**
-     * @throws CurrencyNotFoundException
+     * Creates an account for the given user.
+     *
+     * @param  User  $user  The user for whom the account is being created.
+     * @param  CreateAccountData  $data  The data for creating the account.
+     * @return Account The newly created account.
+     *
+     * @throws CurrencyNotFoundException If the specified currency code is not found.
      */
     public function create(User $user, CreateAccountData $data): Account
     {
@@ -29,7 +35,13 @@ class AccountService
     }
 
     /**
-     * @throws CurrencyNotFoundException
+     * Updates an existing account.
+     *
+     * @param  Account  $account  The account to be updated.
+     * @param  CreateAccountData  $data  The data for updating the account.
+     * @return Account The updated account.
+     *
+     * @throws CurrencyNotFoundException If the specified currency code is not found.
      */
     public function update(Account $account, CreateAccountData $data): Account
     {
@@ -42,6 +54,11 @@ class AccountService
         return $account;
     }
 
+    /**
+     * Deletes an existing account.
+     *
+     * @param  Account  $account  The account to be deleted.
+     */
     public function delete(Account $account): void
     {
         $account->delete();
